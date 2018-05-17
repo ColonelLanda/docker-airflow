@@ -31,6 +31,8 @@ services:
             # - REDIS_PASSWORD=redispass
         volumes:
             - ./dags:/usr/local/airflow/dags
+            # - ./requirements.txt:/requirements.txt
+            - ./config/airflow.cfg:/usr/local/airflow/airflow.cfg
             # Uncomment to include custom plugins
             # - ./plugins:/usr/local/airflow/plugins
         ports:
@@ -47,6 +49,10 @@ services:
         restart: always
         depends_on:
             - redis
+        volumes:
+            # - ./requirements.txt:/requirements.txt
+            - ./config/airflow.cfg:/usr/local/airflow/airflow.cfg
+
         environment:
             - EXECUTOR=Celery
             # - REDIS_PASSWORD=redispass
@@ -61,6 +67,8 @@ services:
             - webserver
         volumes:
             - ./dags:/usr/local/airflow/dags
+            # - ./requirements.txt:/requirements.txt
+            - ./config/airflow.cfg:/usr/local/airflow/airflow.cfg
             # Uncomment to include custom plugins
             # - ./plugins:/usr/local/airflow/plugins
         environment:
@@ -80,6 +88,8 @@ services:
             - scheduler
         volumes:
             - ./dags:/usr/local/airflow/dags
+            # - ./requirements.txt:/requirements.txt
+            - ./config/airflow.cfg:/usr/local/airflow/airflow.cfg
             # Uncomment to include custom plugins
             # - ./plugins:/usr/local/airflow/plugins
         environment:
